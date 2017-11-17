@@ -8,20 +8,38 @@ var query2 = str[3];
 var request = require("./keys.js").request;
 var movies1 = "movie-this";
 var doWhat = "do-what-it-says";
-
+var query3 = "";
 var spotArr = [];
 var twitterArr = [];
 f =1;
+
+
+// for (var i = 2; i < str.length; i++) {
+
+//   if (i > 2 && i < str.length) {
+
+//     query3 = query3 + "+" + str[i];
+//     query2 = query3;
+
+//   }
+
+//   else {
+
+//     query3 += str[i];
+
+//   }
+// }
 
 if (tweets1 === input){
 twitterKeys.get('favorites/list', function(tweets, response) {
 
  var tweetArr = [];
 
+
 for (i=0; i < 20; i++){
 
   
-   console.log("tweet #" + [f] + " " + response[i].text); 
+   console.log("tweet #" + [f] + ": " + response[i].text); 
    console.log("date: " + response[i].created_at);
   
 
