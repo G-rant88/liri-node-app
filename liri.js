@@ -9,9 +9,20 @@ var request = require("./keys.js").request;
 var movies1 = "movie-this";
 var doWhat = "do-what-it-says";
 var query3 = "";
+var office = "thats-what-she-said";
 var spotArr = [];
 var twitterArr = [];
-f =1;
+var f =1;
+var theofficequotes = require("./keys.js").theofficequotes;
+var pokemon = require("./keys.js").pokemon;
+var poke = "pick-a-pokemon";
+var sw = require("./keys.js").sw;
+var swq = "quote-me";
+var help = "help";
+var marvel = require("./keys.js").marvel;
+var marv = "superhero";
+var weather = require("./keys.js").weather;
+var weath = "weather";
 
 
 // for (var i = 2; i < str.length; i++) {
@@ -19,7 +30,7 @@ f =1;
 //   if (i > 2 && i < str.length) {
 
 //     query3 = query3 + "+" + str[i];
-//     query2 = query3;
+//     query3 = query3;
 
 //   }
 
@@ -29,6 +40,20 @@ f =1;
 
 //   }
 // }
+
+
+if (help === input){
+
+console.log("type 'my-tweets' for 20 recent Tweets");
+console.log("type 'spotify-this-song' + 'song name here' to find a song on Spotify");
+console.log("type 'movie-this' + 'movie name here' to find a movie on OMDB");
+console.log("type 'pick-a-pokemon' to get a random Pokemon");
+console.log("type 'quote-me' for an awesome quote");
+console.log("type 'superhero' for a random Marvel superhero");
+console.log("type 'weather' + 'city, state' or 'city, country' for current weather stats");
+
+
+}
 
 if (tweets1 === input){
 twitterKeys.get('favorites/list', function(tweets, response) {
@@ -265,3 +290,130 @@ var fs = require("fs");
 
 
 }
+
+if  (poke === input){
+
+      var data = pokemon.randomize();
+      console.log("Pokemon name: " + data.name);
+      console.log("Type: " + data.types);
+      console.log("Index: " + data.index);
+
+      var pokeArr = [data.name, data.types, data.index];
+
+
+ for (var i = 0; i < pokeArr.length; i++) {
+
+
+   var fs = require("fs");
+   fs.appendFile("log.txt", pokeArr[i] + "\r \n", function(data) {
+
+    
+ 
+  });
+ }
+
+ console.log("log.txt was updated!");
+
+  }
+
+
+
+if  (swq === input){
+
+var swf = sw();
+      console.log(swf);
+
+       var swArr = [swf];
+
+
+  for (var i = 0; i < swArr.length; i++) {
+
+
+    var fs = require("fs");
+    fs.appendFile("log.txt", swArr[i] + "\r \n", function(data) {
+
+    
+ 
+   });
+  }
+
+  console.log("log.txt was updated!");
+
+  }
+
+
+if  (marv === input){
+
+var allNames = marvel.all;
+var randomName = marvel.random();
+
+      console.log("Marvel superhero name: " + randomName);
+
+     var marvArr = [randomName];
+
+  for (var i = 0; i < marvArr.length; i++) {
+
+
+    var fs = require("fs");
+    fs.appendFile("log.txt", marvArr[i] + "\r \n", function(data) {
+
+    
+ 
+   });
+  }
+
+  console.log("log.txt was updated!");
+
+  }
+
+if  (weath === input){
+
+ weather.find({search: query2, degreeType: 'F'}, function(err, result) {
+  if(err) console.log(err);
+ 
+
+  // console.log(result);
+  console.log("City: " + result[0].location.name);
+   console.log("Current Temperature: " + result[0].current.temperature + " degrees F");
+   console.log("Current Sky: " + result[0].current.skytext);
+   console.log("Current Wind Speed: " + result[0].current.windspeed);
+   console.log("Current Humidity: " + result[0].current.humidity)
+   console.log("Observation Time: " + result[0].current.observationtime)
+   console.log("Current Date: " + result[0].current.date)
+
+
+
+     var weathArr = [result[0].location.name, result[0].current.temperature, result[0].current.skytext, result[0].current.windspeed, 
+     result[0].current.humidity, result[0].current.observationtime, result[0].current.date];
+
+  for (var i = 0; i < weathArr.length; i++) {
+
+
+    var fs = require("fs");
+    fs.appendFile("log.txt", weathArr[i] + "\r \n", function(data) {
+
+    
+ 
+   });
+  }
+});
+  console.log("log.txt was updated!");
+
+  }
+     
+
+
+
+
+
+
+
+// if  (office === input){
+
+
+//    require( JSON.stringify(theofficequotes), function(data){
+
+//       console.log(JSON.parse(data));
+
+//      });
+//         }

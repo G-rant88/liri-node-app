@@ -15,10 +15,26 @@ var spotifyKeys = new Spotify({
 
 var request = require('request');
 
+
+var pokemon = require('pokemon-picker');
+
+var theofficequotes = require("the-office-quotes");
+
+var sw = require('star-wars-quotes');
+
+var marvel = require('marvel-comics-characters');
+
+var weather = require('weather-js');
+
 module.exports = {
 	
  twitterKeys: twitterKeys,
   spotifyKeys: spotifyKeys,
-   request: request
+   request: request,
+   pokemon: pokemon,
+   theofficequotes: theofficequotes,
+   sw: sw,
+   marvel: marvel,
+   weather: weather
 
 }

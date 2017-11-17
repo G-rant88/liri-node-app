@@ -20,8 +20,16 @@
   },
   "homepage": "https://github.com/G-rant88/liri-node-app#readme",
   "dependencies": {
+    "harry-potter-names": "^1.2.0",
+    "marvel-comics-characters": "^1.1.1",
     "node-spotify-api": "^1.0.7",
+    "pokemon-picker": "^1.2.2",
     "request": "^2.83.0",
-    "twitter": "^1.7.1"
+    "seinfeld-quotes": "^1.0.0",
+    "star-wars-quotes": "^1.0.2",
+    "the-office-quotes": "^1.2.0",
+    "twitter": "^1.7.1",
+    "unique-random-array": "^1.0.0",
+    "weather-js": "^2.0.0"
   }
 }
