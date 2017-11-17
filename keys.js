@@ -26,6 +26,12 @@ var marvel = require('marvel-comics-characters');
 
 var weather = require('weather-js');
 
+var wtf = require("wtf_wikipedia");
+
+var nba = require("nba");
+
+var hp = require('harry-potter-spells');
+
 module.exports = {
 	
  twitterKeys: twitterKeys,
@@ -35,6 +41,9 @@ module.exports = {
    theofficequotes: theofficequotes,
    sw: sw,
    marvel: marvel,
-   weather: weather
+   weather: weather,
+   wtf:wtf,
+   nba: nba,
+   hp: hp
 
 }

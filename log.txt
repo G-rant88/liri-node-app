@@ -1,35 +1,14 @@
-﻿Partly Cloudy 
-Los Angeles, CA 
-5 mph 
-69 
-2017-11-16 
-19:10:00 
-57 
-Partly Cloudy 
-04:00:00 
-45 
-2017-11-17 
-66 
-13 mph 
-Barcelona, Spain 
-44 
-19:25:00 
-10 mph 
-2017-11-16 
-Mostly Cloudy 
-88 
-Seattle, WA 
-10 mph 
-Seattle, WA 
-Mostly Cloudy 
-44 
-88 
-2017-11-16 
-19:25:00 
-Mostly Cloudy 
-44 
-10 mph 
-19:25:00 
-Seattle, WA 
-88 
-2017-11-16 
+Mobilicorpus 
+Moves unconscious bodies 
+spell 
+Pau 
+Gasol 
+250 
+7-0 
+Center 
+Spurs 
+San Antonio 
+16 
+8.2 
+3.8 
+10.5 

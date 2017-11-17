@@ -23,6 +23,12 @@ var marvel = require("./keys.js").marvel;
 var marv = "superhero";
 var weather = require("./keys.js").weather;
 var weath = "weather";
+var wtf = require("./keys.js").wtf;
+var wiki = "wiki";
+var nba = require("./keys.js").nba;
+var nba2 = "nba-stats";
+var hp = require("./keys.js").hp;
+var hp2 = "cast-a-spell";
 
 
 // for (var i = 2; i < str.length; i++) {
@@ -51,6 +57,9 @@ console.log("type 'pick-a-pokemon' to get a random Pokemon");
 console.log("type 'quote-me' for an awesome quote");
 console.log("type 'superhero' for a random Marvel superhero");
 console.log("type 'weather' + 'city, state' or 'city, country' for current weather stats");
+console.log("type 'wiki' + 'thing' for that complete wiipedia page");
+console.log("type 'nba-stats' + 'player name' for that NBA player's stats");
+console.log("type 'cast-a-spell' to cast a random spell!");
 
 
 }
@@ -252,7 +261,7 @@ var fs = require("fs");
    }
 
    data2 =  data.split(",");
-   console.log(data2);
+   // console.log(data2);
 
    spotifyKeys.search({ type: 'track', query: data2[1], limit: 1 }, function(err, data) {
 
@@ -401,19 +410,109 @@ if  (weath === input){
 
   }
      
+if  (wiki === input){
+
+wtf.from_api(query2, "en", function(markup){
+  var text = wtf.plaintext(markup)
+
+  console.log(text);
+ 
+
+     var wikiArr = [text];
+
+  for (var i = 0; i < wikiArr.length; i++) {
+
+
+    var fs = require("fs");
+    fs.appendFile("log.txt", wikiArr[i] + "\r \n", function(data) {
+
+    
+ 
+   });
+  }
+
+  console.log("log.txt was updated!");
+});
+  }
 
 
 
+if  (nba2 === input){
+
+var search = nba.findPlayer(query2);
+
+ // console.log(search.playerId);
+
+nba.stats.playerInfo({ PlayerID: search.playerId }).then( function (id){
+
+  // console.log(id);
+
+  console.log("First Name: " + id.commonPlayerInfo[0].firstName);
+   console.log("Last Name: " + id.commonPlayerInfo[0].lastName);
+   console.log("Height: " + id.commonPlayerInfo[0].height + " ft");
+   console.log("Weight: " + id.commonPlayerInfo[0].weight + " lbs");
+   console.log("Number: " + id.commonPlayerInfo[0].jersey);
+   console.log("Position: " + id.commonPlayerInfo[0].position);
+  console.log("Team: " + id.commonPlayerInfo[0].teamName);
+  console.log("City: " + id.commonPlayerInfo[0].teamCity);
+  console.log("Points: " + id.playerHeadlineStats[0].pts);
+  console.log("Assists: " + id.playerHeadlineStats[0].ast);
+  console.log("Rebounds: " + id.playerHeadlineStats[0].reb);
+
+    var nbaArr = [id.commonPlayerInfo[0].firstName, id.commonPlayerInfo[0].lastName, id.commonPlayerInfo[0].height, 
+      id.commonPlayerInfo[0].weight, id.commonPlayerInfo[0].jersey, id.commonPlayerInfo[0].position, id.commonPlayerInfo[0].teamName, 
+      id.commonPlayerInfo[0].teamCity, id.playerHeadlineStats[0].pts, id.playerHeadlineStats[0].ast, id.playerHeadlineStats[0].reb];
+
+  for (var i = 0; i < nbaArr.length; i++) {
+
+
+    var fs = require("fs");
+    fs.appendFile("log.txt", nbaArr[i] + "\r \n", function(data) {
+
+    
+ 
+   });
+  }
+
+  console.log("log.txt was updated!");
+}
+
+
+  );
+
+
+ 
+
+    
+
+  }
+
+
+if  (hp2 === input){
 
 
 
+var info = hp.random();
 
-// if  (office === input){
+console.log("Spell: " + info.name);
+console.log("Type: " + info.type);
+console.log("Effect: " + info.effect);
+ 
+
+     var hpArr = [info.name, info.type, info.effect];
+
+  for (var i = 0; i < hpArr.length; i++) {
 
 
-//    require( JSON.stringify(theofficequotes), function(data){
+    var fs = require("fs");
+    fs.appendFile("log.txt", hpArr[i] + "\r \n", function(data) {
 
-//       console.log(JSON.parse(data));
+    
+ 
+   });
+  }
 
-//      });
-//         }
+  console.log("log.txt was updated!");
+
+  }
+
