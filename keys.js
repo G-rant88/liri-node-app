@@ -15,7 +15,6 @@ var spotifyKeys = new Spotify({
 
 var request = require('request');
 
-
 var pokemon = require('pokemon-picker');
 
 var theofficequotes = require("the-office-quotes");
@@ -32,10 +31,12 @@ var nba = require("nba");
 
 var hp = require('harry-potter-spells');
 
+var foursquare = (require('foursquarevenues'))('YDAI3HM532ZHCLP4XBC4Z5OCOO2YN5JT3Q3SP4C3EKDNZKT5', 'UQKRY5R4YPYKDQAQNUCVSSVGGPMUXPQA1XSIJOIQT5ZDO4HU');
+
 module.exports = {
 	
- twitterKeys: twitterKeys,
-  spotifyKeys: spotifyKeys,
+   twitterKeys: twitterKeys,
+   spotifyKeys: spotifyKeys,
    request: request,
    pokemon: pokemon,
    theofficequotes: theofficequotes,
@@ -44,6 +45,8 @@ module.exports = {
    weather: weather,
    wtf:wtf,
    nba: nba,
-   hp: hp
+   hp: hp,
+   foursquare: foursquare
+
 
 }

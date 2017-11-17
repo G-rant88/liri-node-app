@@ -5,10 +5,10 @@ var input = str[2];
 var spotifyKeys = require("./keys.js").spotifyKeys;
 var spot1 = "spotify-this-song";
 var query2 = str[3];
+var query3 = str[4];
 var request = require("./keys.js").request;
 var movies1 = "movie-this";
 var doWhat = "do-what-it-says";
-var query3 = "";
 var office = "thats-what-she-said";
 var spotArr = [];
 var twitterArr = [];
@@ -29,6 +29,9 @@ var nba = require("./keys.js").nba;
 var nba2 = "nba-stats";
 var hp = require("./keys.js").hp;
 var hp2 = "cast-a-spell";
+var four = require("./keys.js").foursquare;
+var four2 = "search-for";
+
 
 
 // for (var i = 2; i < str.length; i++) {
@@ -50,17 +53,18 @@ var hp2 = "cast-a-spell";
 
 if (help === input){
 
-console.log("type 'my-tweets' for 20 recent Tweets");
-console.log("type 'spotify-this-song' + 'song name here' to find a song on Spotify");
-console.log("type 'movie-this' + 'movie name here' to find a movie on OMDB");
-console.log("type 'pick-a-pokemon' to get a random Pokemon");
-console.log("type 'quote-me' for an awesome quote");
-console.log("type 'superhero' for a random Marvel superhero");
-console.log("type 'weather' + 'city, state' or 'city, country' for current weather stats");
-console.log("type 'wiki' + 'thing' for that complete wiipedia page");
-console.log("type 'nba-stats' + 'player name' for that NBA player's stats");
-console.log("type 'cast-a-spell' to cast a random spell!");
-
+console.log("type my-tweets for 20 recent Tweets");
+console.log("type spotify-this-song + 'song name here' to find a song on Spotify");
+console.log("type movie-this + 'movie name here' to find a movie on OMDB");
+console.log("type pick-a-pokemon to get a random Pokemon");
+console.log("type quote-me for an awesome quote");
+console.log("type superhero for a random Marvel superhero");
+console.log("type weather + 'city, state' or 'city, country' for current weather stats");
+console.log("type wiki + 'thing' for that complete wiipedia page");
+console.log("type nba-stats + 'player name' for that NBA player's stats");
+console.log("type cast-a-spell to cast a random spell!");
+console.log("type thats-what-she-said for a line from The Office (best show ever)");
+console.log("type search-for + 'city' + 'thing' for a list of things in your city");
 
 }
 
@@ -516,3 +520,80 @@ console.log("Effect: " + info.effect);
 
   }
 
+
+if  (office === input){
+
+
+
+var dat = theofficequotes.random();
+
+console.log(dat.quote);
+console.log("- " + dat.name);
+
+
+ var offArr = [dat.quote, dat.name];
+
+  for (var i = 0; i < offArr.length; i++) {
+
+
+    var fs = require("fs");
+    fs.appendFile("log.txt", offArr[i] + "\r \n", function(data) {
+
+    
+ 
+   });
+  }
+
+  console.log("log.txt was updated!");
+}
+
+
+if  (four2 === input){
+
+   var params = {
+        "near": (query2 + ", CA"),
+        "query": query3
+      
+    };
+
+  four.getVenues(params, function(error, venues) {
+
+g = 1;
+        if (!error) {
+
+var fourArr = [];
+          for (var i = 0; i < 5; i++) {
+         
+        console.log("Result # " + g);  
+        console.log("Name: " + venues.response.venues[i].name);
+        console.log("Phone: " + venues.response.venues[i].contact.formattedPhone);
+        console.log("Street: " + venues.response.venues[i].location.address);
+        console.log("City: " + venues.response.venues[i].location.city);
+        console.log("Category: " + venues.response.venues[i].categories[0].name);
+        console.log("");
+
+        g++;
+
+          fourArr.push(venues.response.venues[i].name, venues.response.venues[i].contact.formattedPhone, 
+         venues.response.venues[i].location.address, venues.response.venues[i].location.city, 
+         venues.response.venues[i].categories[0].name);
+
+  
+      }
+
+      for (var h = 0; h < fourArr.length; h++) {
+
+
+    var fs = require("fs");
+    fs.appendFile("log.txt", fourArr[h] + "\r \n", function(data) {
+
+    
+ 
+   });
+  }
+
+  console.log("log.txt was updated!");
+        }
+    });
+
+}
