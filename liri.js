@@ -4,8 +4,6 @@ var tweets1 = "my-tweets";
 var input = str[2];
 var spotifyKeys = require("./keys.js").spotifyKeys;
 var spot1 = "spotify-this-song";
-var query2 = str[3];
-var query3 = str[4];
 var request = require("./keys.js").request;
 var movies1 = "movie-this";
 var doWhat = "do-what-it-says";
@@ -31,40 +29,67 @@ var hp = require("./keys.js").hp;
 var hp2 = "cast-a-spell";
 var four = require("./keys.js").foursquare;
 var four2 = "search-for";
+var geo = require("./keys.js").geo;
+var geo2 = "find";
 
+if (input === undefined){
+var inquirer = require("inquirer");
 
+inquirer
+  .prompt([
+    {
+      type: "input",
+      message: "What is your name?",
+      name: "username"
+    },
+    {
+      type: "confirm",
+      message: "Are you sure:",
+      name: "confirm",
+      default: true
+    }
+    ])
+  .then(function(res) {
+    
+    if (res.confirm) {
+      console.log("\nWelcome " + res.username + "\nhere's a list of things I can do:");
+      console.log("type my-tweets for 20 recent Tweets");
+console.log("type spotify-this-song + song name here to find a song on Spotify");
+console.log("type movie-this + movie name here to find a movie on OMDB");
+console.log("type pick-a-pokemon to get a random Pokemon");
+console.log("type quote-me for an awesome quote");
+console.log("type superhero for a random Marvel superhero");
+console.log("type weather + city, state or city, country for current weather stats");
+console.log("type wiki + thing for that complete wiipedia page");
+console.log("type nba-stats + player name for that NBA player's stats");
+console.log("type cast-a-spell to cast a random spell!");
+console.log("type thats-what-she-said for a line from The Office (best show ever)");
+console.log("type search-for + 'city' + 'thing' for a list of things in your city");
+console.log("type find + thing to find the location/type of the thing");
+    }
+    else {
+      console.log("\nThat's okay " + res.username + ", come back later.\n");
+    }
+  });
 
-// for (var i = 2; i < str.length; i++) {
-
-//   if (i > 2 && i < str.length) {
-
-//     query3 = query3 + "+" + str[i];
-//     query3 = query3;
-
-//   }
-
-//   else {
-
-//     query3 += str[i];
-
-//   }
-// }
+}
 
 
 if (help === input){
 
 console.log("type my-tweets for 20 recent Tweets");
-console.log("type spotify-this-song + 'song name here' to find a song on Spotify");
-console.log("type movie-this + 'movie name here' to find a movie on OMDB");
+console.log("type spotify-this-song + song name here to find a song on Spotify");
+console.log("type movie-this + movie name here to find a movie on OMDB");
 console.log("type pick-a-pokemon to get a random Pokemon");
 console.log("type quote-me for an awesome quote");
 console.log("type superhero for a random Marvel superhero");
-console.log("type weather + 'city, state' or 'city, country' for current weather stats");
-console.log("type wiki + 'thing' for that complete wiipedia page");
-console.log("type nba-stats + 'player name' for that NBA player's stats");
+console.log("type weather + city, state or city, country for current weather stats");
+console.log("type wiki + thing for that complete wiipedia page");
+console.log("type nba-stats + player name for that NBA player's stats");
 console.log("type cast-a-spell to cast a random spell!");
 console.log("type thats-what-she-said for a line from The Office (best show ever)");
 console.log("type search-for + 'city' + 'thing' for a list of things in your city");
+console.log("type find + thing to find the location/type of the thing");
 
 }
 
@@ -107,6 +132,8 @@ console.log("log.txt was updated!");
 };
 
 if (spot1 === input){
+
+  var query2 = str.splice(3).join(" ");
 
     if (query2 === undefined){
 
@@ -176,6 +203,8 @@ console.log("log.txt was updated!");
 }
 
 if (movies1 === input){
+
+  var query2 = str.splice(3).join(" ");
 
  	if (query2 === undefined){
 
@@ -381,6 +410,8 @@ var randomName = marvel.random();
 
 if  (weath === input){
 
+  var query2 = str.splice(3).join(" ");
+
  weather.find({search: query2, degreeType: 'F'}, function(err, result) {
   if(err) console.log(err);
  
@@ -416,6 +447,8 @@ if  (weath === input){
      
 if  (wiki === input){
 
+  var query2 = str.splice(3).join(" ");
+
 wtf.from_api(query2, "en", function(markup){
   var text = wtf.plaintext(markup)
 
@@ -442,6 +475,8 @@ wtf.from_api(query2, "en", function(markup){
 
 
 if  (nba2 === input){
+
+  var query2 = str.splice(3).join(" ");
 
 var search = nba.findPlayer(query2);
 
@@ -550,9 +585,12 @@ console.log("- " + dat.name);
 
 if  (four2 === input){
 
+   var query3 = str[3]; 
+    var query4 = str[4];
+
    var params = {
-        "near": (query2 + ", CA"),
-        "query": query3
+        "near": (query3 + ", CA"),
+        "query": query4
       
     };
 
@@ -596,4 +634,34 @@ var fourArr = [];
         }
     });
 
+}
+
+if (geo2 === input){
+
+  var query2 = str.splice(3).join(" ");
+  // query2.split(",");
+
+  geo.geocode(query2, function ( err, data ) {
+
+  // console.log(JSON.stringify(data));
+   console.log("City: " + data.results[0].formatted_address);
+   console.log("Type: " + data.results[0].types[0]);
+  
+var geoArr = [data.results[0].formatted_address, data.results[0].types[0]];
+
+  for (var i = 0; i < geoArr.length; i++) {
+
+
+    var fs = require("fs");
+    fs.appendFile("log.txt", geoArr[i] + "\r \n", function(data) {
+
+    
+ 
+   });
+  }
+
+  console.log("log.txt was updated!");
+
+
+});
 }

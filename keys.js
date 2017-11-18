@@ -31,7 +31,11 @@ var nba = require("nba");
 
 var hp = require('harry-potter-spells');
 
-var foursquare = (require('foursquarevenues'))('YDAI3HM532ZHCLP4XBC4Z5OCOO2YN5JT3Q3SP4C3EKDNZKT5', 'UQKRY5R4YPYKDQAQNUCVSSVGGPMUXPQA1XSIJOIQT5ZDO4HU');
+var foursquare = (require('foursquarevenues'))('YDAI3HM532ZHCLP4XBC4Z5OCOO2YN5JT3Q3SP4C3EKDNZKT5', 
+  'UQKRY5R4YPYKDQAQNUCVSSVGGPMUXPQA1XSIJOIQT5ZDO4HU');
+
+ var geo = require('geocoder');
+
 
 module.exports = {
 	
@@ -46,7 +50,8 @@ module.exports = {
    wtf:wtf,
    nba: nba,
    hp: hp,
-   foursquare: foursquare
+   foursquare: foursquare,
+   geo: geo
 
 
 }
