@@ -14,12 +14,8 @@ var geo = require("./keys.js").geo;
 var inquirer = require("inquirer");
 var namey;
 var ee = require('easy-encryption');
-// var dataArr = [];
-
+var dataArr ;
  
-
-
-
 function start (){
 
 console.log("Hi, I'm Liri! Please create an account to get started:\n");
@@ -41,41 +37,29 @@ inquirer
     ])
   .then(function(sign) {
 
+//  var fs = require("fs");
 
- // var fs = require("fs");
+// if (fs.readFileSync("log.txt", "utf8") !== ""){
 
- // fs.readFile("log.txt", "utf8", function(err, datas) {
+//  var fs = require("fs");
 
- //  if (err) {
- //     console.log(err);
- //   }
+// dataArr = (fs.readFileSync("log.txt", "utf8").toString().split("\n"));
 
- //    var dataArr = datas.split("\n");
+//      var plaintext3  = ee.decrypt('user', dataArr[1]);
+//       var plaintext4  = ee.decrypt('pw', dataArr[3]);
 
+//   if (sign.user === plaintext3 && sign.pws === plaintext4){
 
-
- //    var plaintext3  = ee.decrypt('users', JSON.parse(dataArr[1]));
- //     var plaintext4  = ee.decrypt('pws', JSON.parse(dataArr[3]));
-
- //     console.log(plaintext4);
- // console.log(plaintext3);
- 
- //   console.log(dataArr);
-  
- // });
-
- // if (sign.user === plaintext3 && sign.pws === plaintext4){
-
- //  console.log("\nWelcome " + plaintext3 + "\n");
- //      namey = plaintext3;       
- //      choices();
+//    console.log("\nWelcome " + plaintext3 + "\n");
+//        namey = plaintext3;       
+//        choices();
+//        return;
 
 
- // }
+//   }
+// }
 
-
-// else {
-
+//  else {
 
  var ciphertext  = ee.encrypt('user', sign.user);
 
@@ -97,7 +81,7 @@ var fs = require("fs");
  });
 console.log("log.txt was updated!\n");
 
-// }
+ // }
 
 
 
@@ -148,13 +132,6 @@ else {
 signin();
 
 });
-
-
-
-
-
-
-
 
 
 
