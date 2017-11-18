@@ -48,7 +48,6 @@ function start (){
 
 
 function choices (){
-
 	inquirer
   .prompt([
     {
