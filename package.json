@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/G-rant88/liri-node-app#readme",
   "dependencies": {
+    "commander": "^2.11.0",
     "crypto": "^1.0.1",
     "eventbrite": "^0.1.6",
     "football-matches": "^1.2.3",
