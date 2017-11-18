@@ -14,6 +14,7 @@ var geo = require("./keys.js").geo;
 var inquirer = require("inquirer");
 var namey;
 
+
 function start (){
 
 	inquirer
