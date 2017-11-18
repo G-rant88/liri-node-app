@@ -22,6 +22,7 @@
   "dependencies": {
     "commander": "^2.11.0",
     "crypto": "^1.0.1",
+    "easy-encryption": "^0.1.1",
     "foursquarevenues": "^3.0.1",
     "geocoder": "^0.2.3",
     "harry-potter-names": "^1.2.0",

@@ -13,39 +13,180 @@ var four = require("./keys.js").foursquare;
 var geo = require("./keys.js").geo;
 var inquirer = require("inquirer");
 var namey;
+var ee = require('easy-encryption');
+// var dataArr = [];
+
+ 
+
 
 
 function start (){
 
-	inquirer
+console.log("Hi, I'm Liri! Please create an account to get started:\n");
+
+inquirer
   .prompt([
     {
       type: "input",
-      message: "What is your name?",
-      name: "username"
+      message: "What is your username?",
+      name: "user"
     },
     {
-      type: "confirm",
-      message: "Are you sure:",
-      name: "confirm",
-      default: true
+      type: "password",
+      message: "What is your password?",
+      name: "pws",
+      hidden: true,
+      mask: "*"
     }
     ])
-  .then(function(res) {
-    
-    if (res.confirm) {
-      console.log("\nWelcome " + res.username + ", I'm Liri");
-      namey = res.username;
-      choices();
+  .then(function(sign) {
 
-}
 
-   else {
-      console.log("\nThat's okay " + res.username + ", come back later.\n");
+ // var fs = require("fs");
+
+ // fs.readFile("log.txt", "utf8", function(err, datas) {
+
+ //  if (err) {
+ //     console.log(err);
+ //   }
+
+ //    var dataArr = datas.split("\n");
+
+
+
+ //    var plaintext3  = ee.decrypt('users', JSON.parse(dataArr[1]));
+ //     var plaintext4  = ee.decrypt('pws', JSON.parse(dataArr[3]));
+
+ //     console.log(plaintext4);
+ // console.log(plaintext3);
+ 
+ //   console.log(dataArr);
+  
+ // });
+
+ // if (sign.user === plaintext3 && sign.pws === plaintext4){
+
+ //  console.log("\nWelcome " + plaintext3 + "\n");
+ //      namey = plaintext3;       
+ //      choices();
+
+
+ // }
+
+
+// else {
+
+
+ var ciphertext  = ee.encrypt('user', sign.user);
+
+
+var fs = require("fs");
+  fs.appendFile("log.txt", ("\n") + ciphertext + ("\n"), function(data) {
+
+ });
+
+console.log("log.txt was updated!\n");
+
+
+ var ciphertext2  = ee.encrypt('pw', sign.pws);
+
+
+var fs = require("fs");
+  fs.appendFile("log.txt", ("\n") + ciphertext2 + ("\n"), function(data) {
+
+ });
+console.log("log.txt was updated!\n");
+
+// }
+
+
+
+function signin(){
+
+inquirer
+  .prompt([
+    {
+      type: "input",
+      message: "Please sign in with your username:",
+      name: "user2"
+    },
+    {
+      type: "password",
+      message: "Please sign in with your password",
+      name: "pws2",
+      hidden: true,
+      mask: "*"
     }
-  });
+    ])
+
+.then(function(sign2) {
+
+ var plaintext   = ee.decrypt('user', ciphertext);
+ var plaintext2   = ee.decrypt('pw', ciphertext2);
+
+if (sign2.user2 === plaintext && sign2.pws2 === plaintext2){
+
+ console.log("\nWelcome " + plaintext + "\n");
+      namey = plaintext;
+       choices();
+
 
 }
+
+else {
+
+  console.log("Sorry, wrong username/password. Try again:\n")
+  signin();
+}
+
+
+
+});
+
+}
+
+signin();
+
+});
+
+
+
+
+
+
+
+
+
+
+// 	inquirer
+//   .prompt([
+//     {
+//       type: "input",
+//       message: "What is your name?",
+//       name: "username"
+//     },
+//     {
+//       type: "confirm",
+//       message: "Are you sure:",
+//       name: "confirm",
+//       default: true
+//     }
+//     ])
+//   .then(function(res) {
+    
+//     if (res.confirm) {
+//       console.log("\nWelcome " + res.username + ", I'm Liri");
+//       namey = res.username;
+//       choices();
+
+// }
+
+//    else {
+//       console.log("\nThat's okay " + res.username + ", come back later.\n");
+//     }
+//   });
+
+ }
 
 
 function choices (){
