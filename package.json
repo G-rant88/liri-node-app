@@ -31,6 +31,7 @@
     "inquirer": "^4.0.0",
     "marvel-comics-characters": "^1.1.1",
     "moment": "^2.19.2",
+    "mysql": "^2.15.0",
     "nba": "^4.0.1",
     "nba-go": "^0.2.1",
     "node-cache": "^4.1.1",

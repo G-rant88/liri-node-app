@@ -15,6 +15,7 @@ var inquirer = require("inquirer");
 var namey;
 var ee = require('easy-encryption');
 var dataArr ;
+
  
 function start (){
 
@@ -39,7 +40,7 @@ inquirer
 
 //  var fs = require("fs");
 
-// if (fs.readFileSync("log.txt", "utf8") !== ""){
+// if (fs.readFileSync("log.txt", "utf8") !== undefined){
 
 //  var fs = require("fs");
 
@@ -59,7 +60,7 @@ inquirer
 //   }
 // }
 
-//  else {
+ // else {
 
  var ciphertext  = ee.encrypt('user', sign.user);
 
@@ -81,8 +82,7 @@ var fs = require("fs");
  });
 console.log("log.txt was updated!\n");
 
- // }
-
+  // }
 
 
 function signin(){
