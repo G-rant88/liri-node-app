@@ -27,6 +27,7 @@
     "geocoder": "^0.2.3",
     "harry-potter-names": "^1.2.0",
     "harry-potter-spells": "0.0.2",
+    "http": "0.0.0",
     "hubot-nba": "^1.5.1",
     "inquirer": "^4.0.0",
     "marvel-comics-characters": "^1.1.1",
