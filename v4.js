@@ -48,7 +48,7 @@ inquirer
     },
     {
       type: "password",
-      message: "Please sign in with your password",
+      message: "Please sign in with your password:",
       name: "pws2",
       hidden: true,
       mask: "*"
@@ -97,12 +97,12 @@ inquirer
   .prompt([
     {
       type: "input",
-      message: "Please create a username",
+      message: "Please create a username:",
       name: "user"
     },
     {
       type: "password",
-      message: "Plese create a password",
+      message: "Plese create a password:",
       name: "pws",
       hidden: true,
       mask: "*"
