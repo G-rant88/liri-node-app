@@ -17,61 +17,27 @@ var ee = require('easy-encryption');
 var dataArr ;
 var mysql = require('mysql');
 
-// var con = mysql.createConnection({
-//   host: "localhost",
-//   user: "yourusername",
-//   password: "yourpassword"
-// });
+var con = mysql.createConnection({
+  host: "localhost",
+  user: "Ben",
+  password: "bgrant88",
+  database: "mydb"
+  
+});
 
 // con.connect(function(err) {
 //   if (err) throw err;
 //   console.log("Connected!");
+//   var sql = "ALTER TABLE info ADD COLUMN password VARCHAR(20)";
+//   con.query(sql, function (err, result) {
+//     if (err) throw err;
+//     console.log("Table altered");
+//   });
 // });
 
- 
-function start (){
+// function start (){
 
-console.log("Hi, I'm Liri! Please create an account to get started:\n");
-
-inquirer
-  .prompt([
-    {
-      type: "input",
-      message: "What is your username?",
-      name: "user"
-    },
-    {
-      type: "password",
-      message: "What is your password?",
-      name: "pws",
-      hidden: true,
-      mask: "*"
-    }
-    ])
-  .then(function(sign) {
-
-
- var ciphertext  = ee.encrypt('user', sign.user);
-
-
-var fs = require("fs");
-  fs.appendFile("log.txt", ("\n") + ciphertext + ("\n"), function(data) {
-
- });
-
-console.log("log.txt was updated!\n");
-
-
- var ciphertext2  = ee.encrypt('pw', sign.pws);
-
-
-var fs = require("fs");
-  fs.appendFile("log.txt", ("\n") + ciphertext2 + ("\n"), function(data) {
-
- });
-console.log("log.txt was updated!\n");
-
-function signin(){
+  function signin(){
 
 inquirer
   .prompt([
@@ -91,37 +57,112 @@ inquirer
 
 .then(function(sign2) {
 
- var plaintext   = ee.decrypt('user', ciphertext);
- var plaintext2   = ee.decrypt('pw', ciphertext2);
 
-if (sign2.user2 === plaintext && sign2.pws2 === plaintext2){
 
- console.log("\nWelcome " + plaintext + "\n");
-      namey = plaintext;
+  con.query("SELECT * FROM info", function (err, result, fields) {
+    if (err) throw err;
+
+for (var i = 0; i < result.length; i++) {
+
+     // console.log(result[i]);
+     if (sign2.user2 === result[i].username && sign2.pws2 === result[i].password){
+
+  console.log("\nWelcome " + sign2.user2 + "\n");
+      namey = sign2.user2;
+      i = result.length;
        choices();
+       return false;
+
+}
 
 
+  };
+
+
+  console.log("Sorry, wrong username/password. Try again:\n");
+  signin();
+  return false;
+ 
+
+  });
+
+});
+
+
+
+};
+
+function create(){
+inquirer
+  .prompt([
+    {
+      type: "input",
+      message: "Please create a username",
+      name: "user"
+    },
+    {
+      type: "password",
+      message: "Plese create a password",
+      name: "pws",
+      hidden: true,
+      mask: "*"
+    }
+    ])
+  .then(function(sign) {
+
+
+con.connect(function(err) {
+  if (err) throw err;
+
+ 
+
+   var sql = "INSERT INTO info (username, password) VALUES ?";
+   values = [
+
+   [sign.user, sign.pws]
+
+   ];
+
+  con.query(sql, [values], function (err, result) {
+    if (err) throw err;
+    // console.log("records insterted:" + result.affectedRows);
+
+  });
+
+  });
+  signin();
+
+});
+
+};
+
+console.log("Hi, I'm Liri!\n");
+
+inquirer
+  .prompt([
+    {
+      type: "confirm",
+      message: "Do already have an account?",
+      name: "conf",
+      default: true
+    }
+    ])
+  .then(function(acc) {
+
+if (acc.conf){
+
+  signin();
 }
 
 else {
 
-  console.log("Sorry, wrong username/password. Try again:\n")
-  signin();
+  create();
 }
 
+  });
 
 
-});
-
-}
-
-signin();
-
-});
-
-
- }
-
+// };
 
 function choices (){
 	inquirer
@@ -621,6 +662,8 @@ var fs = require("fs");
 function stop(){
 
 	console.log("\nGoodbye " + namey + "!\n");
+  con.end();
+  return false;
 }
 
-start();
+ // start();
