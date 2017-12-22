@@ -8,4 +8,4 @@
 </ul>
 
 <img src="https://media.giphy.com/media/xUNd9JhCxs5q8rIs9i/giphy.gif" alt="gif">
-full video demo: (https://www.youtube.com/watch?v=t4KeQw_QP2s&feature=youtu.be)
+full video demo: (https://www.youtube.com/watch?v=t4KeQw_QP2s)
