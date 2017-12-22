@@ -6,3 +6,6 @@
 <li>search for data from various apis</li>
 <li>save your account to a db</li>
 </ul>
+
+<img src="https://media.giphy.com/media/xUNd9JhCxs5q8rIs9i/giphy.gif" alt="gif">
+full video demo: (https://www.youtube.com/watch?v=t4KeQw_QP2s&feature=youtu.be)
